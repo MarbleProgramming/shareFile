@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <style type="text/css">
+      #response_img{
+          width: 400px;
+          height: auto;
+      }
+      </style>
+  </head>
+  <body>
+      <p>id : <span id='response_id'></span></p>
+      <p>url : <span id='response_url'></span></p>
+      <p>webpurl : <span id='response_webpurl'></span></p>
+      <p>x : <span id='response_x'></span></p>
+      <p>y : <span id='response_y'></span></p>
+      <img src="" alt="" id='response_img'>
+    <script>
+        var request = new XMLHttpRequest();
+        request.open('GET', 'https://thatcopy.pw/catapi/rest/', true);
+        request.responseType = 'json';
+        request.onload = function () {
+            var data = this.response;
+            console.log(data);
+            document.getElementById('response_id').textContent = data.id;
+            document.getElementById('response_url').textContent = data.url;
+            document.getElementById('response_webpurl').textContent = data.webpurl;
+            document.getElementById('response_x').textContent = data.x;
+            document.getElementById('response_y').textContent = data.y;
+            var imgElem = document.getElementById('response_img'); 
+            imgElem.src = data.url;
+        };
+        // リクエスト送信
+        request.send();
+      </script>
+  </body>
+</html>
